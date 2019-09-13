@@ -30,18 +30,21 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaPestañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirTokensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirErroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.nuevaPestañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.botonAnalizar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -53,10 +56,11 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.ayudaToolStripMenuItem,
+            this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1426, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,30 +75,59 @@
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
-            // ayudaToolStripMenuItem
+            // nuevaPestañaToolStripMenuItem
             // 
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            this.nuevaPestañaToolStripMenuItem.Name = "nuevaPestañaToolStripMenuItem";
+            this.nuevaPestañaToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.nuevaPestañaToolStripMenuItem.Text = "Nueva Pestaña";
+            this.nuevaPestañaToolStripMenuItem.Click += new System.EventHandler(this.NuevaPestañaToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.abrirToolStripMenuItem.Text = "Abrir Archivo";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.guardarToolStripMenuItem.Text = "Guardar Archivo";
             // 
             // guardarComoToolStripMenuItem
             // 
             this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.guardarComoToolStripMenuItem.Text = "Guardar Como";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imprimirTokensToolStripMenuItem,
+            this.imprimirErroresToolStripMenuItem});
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // imprimirTokensToolStripMenuItem
+            // 
+            this.imprimirTokensToolStripMenuItem.Name = "imprimirTokensToolStripMenuItem";
+            this.imprimirTokensToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.imprimirTokensToolStripMenuItem.Text = "Imprimir Tokens";
+            this.imprimirTokensToolStripMenuItem.Click += new System.EventHandler(this.ImprimirTokensToolStripMenuItem_Click_1);
+            // 
+            // imprimirErroresToolStripMenuItem
+            // 
+            this.imprimirErroresToolStripMenuItem.Name = "imprimirErroresToolStripMenuItem";
+            this.imprimirErroresToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.imprimirErroresToolStripMenuItem.Text = "Imprimir Errores";
             // 
             // tabControl1
             // 
@@ -103,7 +136,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(575, 630);
+            this.tabControl1.Size = new System.Drawing.Size(640, 770);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -112,10 +145,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(567, 601);
+            this.tabPage1.Size = new System.Drawing.Size(632, 741);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(638, 746);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // tabPage2
             // 
@@ -123,59 +164,45 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(567, 601);
+            this.tabPage2.Size = new System.Drawing.Size(632, 741);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // richTextBox2
             // 
-            this.button1.Location = new System.Drawing.Point(589, 297);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Analizar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(638, 747);
+            this.richTextBox2.TabIndex = 1;
+            this.richTextBox2.Text = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(589, 333);
+            this.button2.Location = new System.Drawing.Point(670, 333);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 3;
             this.button2.Text = "Generar PDF";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // botonAnalizar
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(555, 589);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(6, 6);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(555, 589);
-            this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = "";
-            // 
-            // nuevaPestañaToolStripMenuItem
-            // 
-            this.nuevaPestañaToolStripMenuItem.Name = "nuevaPestañaToolStripMenuItem";
-            this.nuevaPestañaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.nuevaPestañaToolStripMenuItem.Text = "Nueva Pestaña";
-            this.nuevaPestañaToolStripMenuItem.Click += new System.EventHandler(this.NuevaPestañaToolStripMenuItem_Click);
+            this.botonAnalizar.Location = new System.Drawing.Point(670, 295);
+            this.botonAnalizar.Name = "botonAnalizar";
+            this.botonAnalizar.Size = new System.Drawing.Size(100, 32);
+            this.botonAnalizar.TabIndex = 4;
+            this.botonAnalizar.Text = "Analizar";
+            this.botonAnalizar.UseVisualStyleBackColor = true;
+            this.botonAnalizar.Click += new System.EventHandler(this.BotonAnalizar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.ClientSize = new System.Drawing.Size(1426, 842);
+            this.Controls.Add(this.botonAnalizar);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -202,11 +229,14 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.ToolStripMenuItem nuevaPestañaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimirTokensToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimirErroresToolStripMenuItem;
+        private System.Windows.Forms.Button botonAnalizar;
     }
 }
 
