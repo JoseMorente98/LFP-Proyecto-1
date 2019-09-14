@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using LFP_Proyecto_No._1.Controlador;
 using System.Text.RegularExpressions;
 namespace LFP_Proyecto_No._1
@@ -22,11 +23,21 @@ namespace LFP_Proyecto_No._1
         string auxiliar = "";
         public string charInicial = "";
         string fila = "";
+        string appPath = Application.StartupPath;
+
 
         public Form1()
         {
             InitializeComponent();
+            richDescripcion.Visible = false;
+
         }
+
+
+
+        #region MenuBar
+
+        #region Menu_Archivo
 
         private void NuevaPestañaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -77,11 +88,24 @@ namespace LFP_Proyecto_No._1
             }
         }
 
-        public void alertMessage(String mensaje)
+        #endregion
+
+
+        #region Menu_Reportes
+        //Imprimir tokens
+        private void ImprimirTokensToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show(mensaje, "Error",
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            TokenControlador.Instancia.ImprimirTokens(tabControl1.SelectedTab.Text);
         }
+        private void ImprimirErroresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TokenControlador.Instancia.ImprimirErrores(tabControl1.SelectedTab.Text);
+        }
+        #endregion
+
+        #endregion
+
+
 
 
         //Boton analizar
@@ -95,7 +119,17 @@ namespace LFP_Proyecto_No._1
                 TokenControlador.Instancia.clearListaTokensError();
                 analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea
             }
+
+            GrafoControlador.Instancia.generarPaises();
+            GrafoControlador.Instancia.generarTexto();
+            //string a = "";
+            generarImagen("diag", this.appPath);
+
+
         }
+
+
+
 
         //Metodo que sirve para pintar las palabras reservadas 
         public void pintarLexemas(string lexema, string tipoLexema, int startIndex)
@@ -291,6 +325,7 @@ namespace LFP_Proyecto_No._1
                                 else
                                 {
                                     TokenControlador.Instancia.agregarError(fila, columna, auxiliar, "Patron_Desconocido_"+auxiliar);
+                                    alertMessage("Se detecto un error, Linea" + fila + " , columna " + columna);
                                 }
 
                                 auxiliar = "";
@@ -391,10 +426,51 @@ namespace LFP_Proyecto_No._1
         #endregion
 
 
-        private void ImprimirTokensToolStripMenuItem_Click_1(object sender, EventArgs e)
+
+
+        public void generarImagen(string nombre, string path)
         {
-            TokenControlador.Instancia.ImprimirTokens(tabControl1.SelectedTab.Text);
+            System.IO.File.WriteAllText(path + "\\" + nombre + ".dt" , GrafoControlador.Instancia.getGrafoDot());
+            //System.IO.File.WriteAllText(@"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.txt" , grafoDot);
+            ProcessStartInfo startInfo = new ProcessStartInfo("dot.exe");
+            //startInfo.Arguments = "dot -Tpng \"C:\\Users\\Juan José Ramos\\Desktop\\s\\" + nombre + ".txt\"  -o \"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.png" + "\"   ";
+            startInfo.Arguments = "-Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
+            //startInfo.Arguments = "–Tjpg –O  \"" + path + "\\" + nombre + ".dt\"   ";
+
+            Process.Start(startInfo);
+
+
+
+            Console.WriteLine(GrafoControlador.Instancia.getGrafoDot());
+
+
+
+            pictureGrafico.InitialImage = null;
+
+            string var = path + "\\" + "diag.png";
+            if (File.Exists(var))
+            {
+                Image img = Image.FromFile(var.Replace("\"", ""));
+                this.pictureGrafico.Image = img;
+            }
+            else
+            {
+                richDescripcion.Text = richDescripcion.Text + " " + "\n\n--IMAGEN NO DISPONIBLE---";
+            }
+
+
+
         }
 
+        public void alertMessage(String mensaje)
+        {
+            MessageBox.Show(mensaje, "Error",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

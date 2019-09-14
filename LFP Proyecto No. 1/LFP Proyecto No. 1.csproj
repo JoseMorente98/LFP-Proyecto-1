@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\ContinenteControlador.cs" />
+    <Compile Include="Controlador\GrafoControlador.cs" />
     <Compile Include="Controlador\TokenControlador.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

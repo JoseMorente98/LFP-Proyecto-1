@@ -45,10 +45,17 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.botonAnalizar = new System.Windows.Forms.Button();
+            this.picturePais = new System.Windows.Forms.PictureBox();
+            this.richDescripcion = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureGrafico = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picturePais)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGrafico)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,7 +67,7 @@
             this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1426, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1920, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,6 +135,7 @@
             this.imprimirErroresToolStripMenuItem.Name = "imprimirErroresToolStripMenuItem";
             this.imprimirErroresToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.imprimirErroresToolStripMenuItem.Text = "Imprimir Errores";
+            this.imprimirErroresToolStripMenuItem.Click += new System.EventHandler(this.ImprimirErroresToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -136,7 +144,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(640, 770);
+            this.tabControl1.Size = new System.Drawing.Size(578, 770);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -145,7 +153,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(632, 741);
+            this.tabPage1.Size = new System.Drawing.Size(570, 741);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -179,16 +187,17 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(670, 333);
+            this.button2.Location = new System.Drawing.Point(612, 344);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 3;
             this.button2.Text = "Generar PDF";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // botonAnalizar
             // 
-            this.botonAnalizar.Location = new System.Drawing.Point(670, 295);
+            this.botonAnalizar.Location = new System.Drawing.Point(612, 295);
             this.botonAnalizar.Name = "botonAnalizar";
             this.botonAnalizar.Size = new System.Drawing.Size(100, 32);
             this.botonAnalizar.TabIndex = 4;
@@ -196,23 +205,66 @@
             this.botonAnalizar.UseVisualStyleBackColor = true;
             this.botonAnalizar.Click += new System.EventHandler(this.BotonAnalizar_Click);
             // 
+            // picturePais
+            // 
+            this.picturePais.Location = new System.Drawing.Point(1220, 558);
+            this.picturePais.Name = "picturePais";
+            this.picturePais.Size = new System.Drawing.Size(288, 211);
+            this.picturePais.TabIndex = 5;
+            this.picturePais.TabStop = false;
+            // 
+            // richDescripcion
+            // 
+            this.richDescripcion.Location = new System.Drawing.Point(910, 558);
+            this.richDescripcion.Name = "richDescripcion";
+            this.richDescripcion.Size = new System.Drawing.Size(304, 211);
+            this.richDescripcion.TabIndex = 7;
+            this.richDescripcion.Text = "";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureGrafico);
+            this.panel1.Location = new System.Drawing.Point(780, 56);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1067, 460);
+            this.panel1.TabIndex = 8;
+            // 
+            // pictureGrafico
+            // 
+            this.pictureGrafico.Location = new System.Drawing.Point(0, 3);
+            this.pictureGrafico.Name = "pictureGrafico";
+            this.pictureGrafico.Size = new System.Drawing.Size(1081, 499);
+            this.pictureGrafico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureGrafico.TabIndex = 0;
+            this.pictureGrafico.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1426, 842);
+            this.ClientSize = new System.Drawing.Size(1920, 1055);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.richDescripcion);
+            this.Controls.Add(this.picturePais);
             this.Controls.Add(this.botonAnalizar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picturePais)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGrafico)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +289,10 @@
         private System.Windows.Forms.ToolStripMenuItem imprimirTokensToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirErroresToolStripMenuItem;
         private System.Windows.Forms.Button botonAnalizar;
+        private System.Windows.Forms.PictureBox picturePais;
+        private System.Windows.Forms.RichTextBox richDescripcion;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureGrafico;
     }
 }
 

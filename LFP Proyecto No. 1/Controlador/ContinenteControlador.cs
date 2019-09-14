@@ -12,7 +12,7 @@ namespace LFP_Proyecto_No._1.Controlador
     {
         private readonly static ContinenteControlador instancia = new ContinenteControlador();
         private ArrayList arrayListContinentes = new ArrayList();
-
+        
         private ContinenteControlador()
         {
         }
@@ -31,9 +31,15 @@ namespace LFP_Proyecto_No._1.Controlador
             arrayListContinentes.Add(continente);
         }
 
+
+        
+
         public ArrayList getArrayListContinentes()
         {
             return arrayListContinentes;
         }
+
+        
+
     }
 }

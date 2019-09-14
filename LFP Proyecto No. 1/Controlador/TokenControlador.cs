@@ -38,7 +38,7 @@ namespace LFP_Proyecto_No._1.Controlador
         public void agregarError(int fila, int columna,string lexema, string descripcion)
         {
             Token token = new Token(idTokenError, lexema, descripcion, columna, fila);
-            arrayListTokens.Add(token);
+            arrayListErrors.Add(token);
             idTokenError++;
         }
 
@@ -87,6 +87,35 @@ namespace LFP_Proyecto_No._1.Controlador
             armarHTML(cadena, cadena2, "Tokens " + name);
 
         }
+
+        public void ImprimirErrores(string name)
+        {
+            string cadena = "";
+            string contenido = "";
+
+            for (int i = 0; i < arrayListErrors.Count; i++)
+            {
+                Token tok = (Token)arrayListErrors[i];
+
+                contenido = "<tr>\n" +
+                    "     <th scope=\"row\">" + (i).ToString() + "</th>\n" +
+                    "     <td>" + tok.Fila + "</td>\n" +
+                    "     <td>" + tok.Lexema + "</td>\n" +
+                    "     <td>" + tok.Descripcion + "</td>\n" +
+                    "</tr>";
+                cadena = cadena + contenido;
+
+            }
+            string cadena2 = "<th scope =\"col\">No</th>\n" +
+            "          <th scope=\"col\">Fila</th>\n" +
+            "          <th scope=\"col\">Lexema</th>\n" +
+            "          <th scope=\"col\">Token</th>\n";
+            armarHTML(cadena, cadena2, "Errores " + name);
+
+        }
+
+
+
         public void armarHTML(string cadena, string cadena2, string titulo)
         {
 
