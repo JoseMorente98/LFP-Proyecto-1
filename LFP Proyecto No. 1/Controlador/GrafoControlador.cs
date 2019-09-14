@@ -13,6 +13,8 @@ namespace LFP_Proyecto_No._1.Controlador
     {
         private readonly static GrafoControlador instancia = new GrafoControlador();
         public string grafoDot = "";
+        String[] listaPaises = new String[20];
+        String[] listaContinentes = new String[20];
         public static GrafoControlador Instancia
         {
             get
@@ -37,7 +39,7 @@ namespace LFP_Proyecto_No._1.Controlador
 
             Pais p3 = new Pais("USA", 852348, "30", "path");
             Pais p4 = new Pais("Colombia", 852147, "20", "path");
-            Pais p5 = new Pais("Argentina", 123456, "10", "path");
+            Pais p5 = new Pais("Argentina", 123456, "95", "path");
             ArrayList a1 = new ArrayList();
             a1.Add(p3);
             a1.Add(p4);
@@ -55,7 +57,7 @@ namespace LFP_Proyecto_No._1.Controlador
 
             Pais p9 = new Pais("Egipto", 852348, "77", "path");
             Pais p10 = new Pais("Berlin", 852147, "85", "path");
-            Pais p11 = new Pais("Dubai", 123456, "100", "path");
+            Pais p11 = new Pais("Dubai", 123456, "20", "path");
             ArrayList a3 = new ArrayList();
             a3.Add(p9);
             a3.Add(p10);
@@ -104,6 +106,9 @@ namespace LFP_Proyecto_No._1.Controlador
 
             grafoDot = grafoDot + " } ";
 
+
+
+            ordenarPais();
         }
 
         //Devuelve el texto para graficar
@@ -141,6 +146,90 @@ namespace LFP_Proyecto_No._1.Controlador
                 colorPais = "Red";
             }
             return colorPais;
+
+        }
+
+
+        public void ordenarPais()
+        {
+            ArrayList continentes = ContinenteControlador.Instancia.getArrayListContinentes();
+            ArrayList paises = new ArrayList();
+
+            //Agrega los paises de los continentes a un array nuevo que va a ser ordenado
+            for (int i = 0; i < continentes.Count; i++)
+            {
+                Continente c = (Continente)continentes[i];
+                for (int j = 0; j < c.Paises.Count; j++)
+                {
+                    Pais p = (Pais)c.Paises[j];
+                    paises.Add(p);
+                }
+            }
+
+
+            //Metodo burbuja que ordena los paises en forma ascendente segun saturacion
+            for (int i = 0; i <= paises.Count - 1; i++)
+            {
+                for (int j = 0; j < paises.Count - i - 1; j++)
+                {
+                    if (int.Parse(((Pais)paises[j]).Satuacion) > int.Parse(((Pais)paises[j+1]).Satuacion))
+                    {
+                        object tem = paises[j];
+                        paises[j] = paises[j + 1];
+                        paises[j + 1] = tem;
+                    }
+                }
+            }
+
+
+            ////////////////////////////////////////////////////////
+            ///          parte que verifica si la saturacion más pequeña viene mas de una vez
+            ///                       
+
+            int saturacion = int.Parse(((Pais)paises[0]).Satuacion);
+            int contador = 0;
+
+            for (int i = 1; i < paises.Count; i++)
+            {
+                Pais p = (Pais)paises[i];
+                //verifica si la saturacion mas pequeña se repite
+                if (saturacion == int.Parse(p.Satuacion))
+                {
+                    //Agrega el nombre del pais que se repitió
+                    listaPaises[contador] = p.Nombre;
+                    contador++;
+                }
+            }
+
+            if (contador > 1)
+            {
+
+                for (int i = 0; i < continentes.Count; i++)
+                {
+                    Continente c = (Continente)continentes[i];
+
+                    for (int j = 0; j < c.Paises.Count; j++)
+                    {
+                        Pais p = (Pais)c.Paises[j];
+                        for (int k = 0; k < listaPaises.Length; k++)
+                        {
+                            
+                            if (p.Nombre.Equals(listaPaises[k]))
+                            {
+                                int satContinente = 0;
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador +" veces");
+            } else
+            {
+                //return ((Pais)paises[0])
+                Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");
+            }
+
+
 
         }
 
