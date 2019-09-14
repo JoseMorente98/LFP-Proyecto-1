@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using LFP_Proyecto_No._1.Controlador;
 using System.Text.RegularExpressions;
+using LFP_Proyecto_No._1.Modelo;
+using System.Collections;
+
 namespace LFP_Proyecto_No._1
 {
     public partial class Form1 : Form
@@ -118,9 +121,11 @@ namespace LFP_Proyecto_No._1
                 TokenControlador.Instancia.clearListaTokens();
                 TokenControlador.Instancia.clearListaTokensError();
                 analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea
+                //OBTENER CONTINENTE
+                obtenerContinentes();
             }
 
-            GrafoControlador.Instancia.generarPaises();
+            //GrafoControlador.Instancia.generarPaises();
             GrafoControlador.Instancia.generarTexto();
             //string a = "";
             generarImagen("diag", this.appPath);
@@ -471,6 +476,107 @@ namespace LFP_Proyecto_No._1
         private void Button2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void ImprimirContinentesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Continente c in ContinenteControlador.Instancia.getArrayListContinentes())
+            {
+                Console.WriteLine("________________________________________");
+                Console.WriteLine(c.Nombre);
+                Console.WriteLine("________________________________________");
+                foreach (Pais p in c.Paises)
+                {
+                    Console.WriteLine(p.Nombre);
+                }
+            }
+        }
+
+        public void obtenerContinentes()
+        {
+            for (int i = 0; i < TokenControlador.Instancia.getArrayListTokens().Count; i++)
+            {
+                Token tok = (Token)TokenControlador.Instancia.getArrayListTokens()[i];
+                if (tok.Lexema.Equals("Continente"))
+                {
+                    ArrayList arrayListPais = new ArrayList();
+                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 4];
+                    //GUARDAR NOMBRE DE CONTINENTE
+                    string continente = "";
+                    string continente2 = "";
+                    continente = tok2.Lexema;
+                    Console.WriteLine("______________________________________");
+                    Console.WriteLine(continente);
+                    Console.WriteLine("______________________________________");
+                    for (int j = 0; j < TokenControlador.Instancia.getArrayListTokens().Count; j++)
+                    {
+                        //Comparación del Continente
+                        Token tok3 = (Token)TokenControlador.Instancia.getArrayListTokens()[j];
+                        if (tok3.Lexema.Equals("Continente"))
+                        {
+                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 4];
+                            continente2 = tok4.Lexema;
+                        }
+                        if (tok3.Lexema.Equals("Pais"))
+                        {
+                            if (continente.Equals(continente2))
+                            {
+                                string nombre = "";
+                                string bandera = "";
+                                int poblacion = 0;
+                                int saturacion = 0;
+                                for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
+                                {
+                                    Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
+                                    if (tok4.Lexema.Equals("Nombre"))
+                                    {
+                                        Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
+                                        nombre = tok5.Lexema;
+                                        break;
+                                    }
+                                }
+                                for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
+                                {
+                                    Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
+                                    if (tok4.Lexema.Equals("Poblacion"))
+                                    {
+                                        Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
+                                        poblacion = Int32.Parse(tok5.Lexema);
+                                        break;
+                                    }
+                                }
+                                for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
+                                {
+                                    Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
+                                    if (tok4.Lexema.Equals("Saturacion"))
+                                    {
+                                        Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
+                                        saturacion = Int32.Parse(tok5.Lexema);
+                                        break;
+                                    }
+                                }
+                                for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
+                                {
+                                    Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
+                                    if (tok4.Lexema.Equals("Bandera"))
+                                    {
+                                        Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
+                                        bandera = tok5.Lexema;
+                                        break;
+                                    }
+                                }
+                                Pais p = new Pais(nombre.Replace("\"", ""), poblacion, saturacion, bandera.Replace("\"", ""));
+                                arrayListPais.Add(p);
+                                Console.WriteLine("PAIS: " + nombre);
+                                Console.WriteLine("SATURACION: " + saturacion);
+                                Console.WriteLine("POBLACION: " + poblacion);
+                                Console.WriteLine("BANDERA: " + bandera);
+                            }
+                        }
+                    }
+                    ContinenteControlador.Instancia.agregarContinente(continente.Replace("\"", ""), arrayListPais);
+                }
+            }
         }
     }
 }
