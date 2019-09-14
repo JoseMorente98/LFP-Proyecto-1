@@ -10,7 +10,7 @@ namespace LFP_Proyecto_No._1.Modelo
     class Continente
     {
         private string nombre;
-        private ArrayList arrayListPaises;
+        private ArrayList arrayListPaises = new ArrayList();
         
         public Continente(string nombre, ArrayList arrayListPaises)
         {
@@ -25,14 +25,13 @@ namespace LFP_Proyecto_No._1.Modelo
 
         public Continente()
         {
-            arrayListPaises = new ArrayList();
         }
 
         //Setters y Getters
         public string Nombre { get => nombre; set => nombre = value; }
         public ArrayList Paises { get => arrayListPaises; set => arrayListPaises = value; }
 
-        public void agregarPais(string nombre, int poblacion, string satuacion, string path)
+        public void agregarPais(string nombre, int poblacion, int satuacion, string path)
         {
             Pais pais = new Pais(nombre, poblacion, satuacion, path);
             arrayListPaises.Add(pais);

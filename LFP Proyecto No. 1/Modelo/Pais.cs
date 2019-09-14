@@ -10,10 +10,10 @@ namespace LFP_Proyecto_No._1.Modelo
     {
         private string nombre;
         private int poblacion;
-        private string satuacion;
+        private int satuacion;
         private string path;
         
-        public Pais(string nombre, int poblacion, string satuacion, string path)
+        public Pais(string nombre, int poblacion, int satuacion, string path)
         {
             this.Nombre = nombre;
             this.Poblacion = poblacion;
@@ -28,7 +28,7 @@ namespace LFP_Proyecto_No._1.Modelo
         //Getters y Setters
         public string Nombre { get => nombre; set => nombre = value; }
         public int Poblacion { get => poblacion; set => poblacion = value; }
-        public string Satuacion { get => satuacion; set => satuacion = value; }
+        public int Satuacion { get => satuacion; set => satuacion = value; }
         public string Path { get => path; set => path = value; }
     }
 }
