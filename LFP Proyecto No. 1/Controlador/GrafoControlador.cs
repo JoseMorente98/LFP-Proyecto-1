@@ -25,9 +25,9 @@ namespace LFP_Proyecto_No._1.Controlador
 
         public void generarPaises()
         {
-            Pais p = new Pais("Japon", 123456, "80", "path");
-            Pais p1 = new Pais("China", 852147, "95", "path");
-            Pais p2 = new Pais("Korea", 123456, "40", "path");
+            Pais p = new Pais("Japon", 123456, 80, "path");
+            Pais p1 = new Pais("China", 852147, 95, "path");
+            Pais p2 = new Pais("Korea", 123456, 40, "path");
             ArrayList a = new ArrayList();
             a.Add(p);
             a.Add(p1);
@@ -35,27 +35,27 @@ namespace LFP_Proyecto_No._1.Controlador
             ContinenteControlador.Instancia.agregarContinente("Asia", a);
 
 
-            Pais p3 = new Pais("USA", 852348, "30", "path");
-            Pais p4 = new Pais("Colombia", 852147, "20", "path");
-            Pais p5 = new Pais("Argentina", 123456, "10", "path");
+            Pais p3 = new Pais("USA", 852348, 30, "path");
+            Pais p4 = new Pais("Colombia", 852147, 20, "path");
+            Pais p5 = new Pais("Argentina", 123456, 10, "path");
             ArrayList a1 = new ArrayList();
             a1.Add(p3);
             a1.Add(p4);
             a1.Add(p5);
             ContinenteControlador.Instancia.agregarContinente("America", a1);
 
-            Pais p6 = new Pais("España", 852348, "60", "path");
-            Pais p7 = new Pais("Italia", 852147, "70", "path");
-            Pais p8 = new Pais("Inglaterra", 123456, "80", "path");
+            Pais p6 = new Pais("España", 852348, 60, "path");
+            Pais p7 = new Pais("Italia", 852147, 70, "path");
+            Pais p8 = new Pais("Inglaterra", 123456, 80, "path");
             ArrayList a2 = new ArrayList();
             a2.Add(p6);
             a2.Add(p7);
             a2.Add(p8);
             ContinenteControlador.Instancia.agregarContinente("Europa", a2);
 
-            Pais p9 = new Pais("Egipto", 852348, "77", "path");
-            Pais p10 = new Pais("Berlin", 852147, "85", "path");
-            Pais p11 = new Pais("Dubai", 123456, "100", "path");
+            Pais p9 = new Pais("Egipto", 852348, 77, "path");
+            Pais p10 = new Pais("Berlin", 852147, 85, "path");
+            Pais p11 = new Pais("Dubai", 123456, 100, "path");
             ArrayList a3 = new ArrayList();
             a3.Add(p9);
             a3.Add(p10);
@@ -87,11 +87,11 @@ namespace LFP_Proyecto_No._1.Controlador
                 {
                     Pais p = (Pais)c.Paises[j];
                     //Suma las saturaciones de los pai
-                    satPais = satPais + int.Parse(p.Satuacion);
+                    satPais = satPais + p.Satuacion;
                     //Arma el cuerpo
                     cuerpo = cuerpo +
                         c.Nombre + "->" + p.Nombre + ";" +
-                        p.Nombre + "[shape = record label = \"{" + p.Nombre + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(int.Parse(p.Satuacion)) +"];";
+                        p.Nombre + "[shape = record label = \"{" + p.Nombre + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) +"];";
                 }
                 //Saturacion del continente
                 double auxd = satPais / c.Paises.Count;
