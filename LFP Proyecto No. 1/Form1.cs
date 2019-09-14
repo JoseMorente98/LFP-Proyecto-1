@@ -125,8 +125,8 @@ namespace LFP_Proyecto_No._1
                 obtenerContinentes();
             }
 
-            GrafoControlador.Instancia.generarPaises();
-            GrafoControlador.Instancia.generarTexto();
+            //GrafoControlador.Instancia.generarPaises();
+            //GrafoControlador.Instancia.generarTexto();
             //string a = "";
             generarImagen("diag", this.appPath);
 
@@ -442,7 +442,7 @@ namespace LFP_Proyecto_No._1
             startInfo.Arguments = "-Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
             //startInfo.Arguments = "–Tjpg –O  \"" + path + "\\" + nombre + ".dt\"   ";
 
-            Process.Start(startInfo);
+            //Process.Start(startInfo);
 
 
 
@@ -497,10 +497,10 @@ namespace LFP_Proyecto_No._1
             for (int i = 0; i < TokenControlador.Instancia.getArrayListTokens().Count; i++)
             {
                 Token tok = (Token)TokenControlador.Instancia.getArrayListTokens()[i];
-                if (tok.Lexema.ToLower().Equals("continente"))
+                if (tok.Lexema.Equals("Continente"))
                 {
                     ArrayList arrayListPais = new ArrayList();
-                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 5];
+                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 4];
                     //GUARDAR NOMBRE DE CONTINENTE
                     string continente = "";
                     string continente2 = "";
@@ -512,12 +512,12 @@ namespace LFP_Proyecto_No._1
                     {
                         //Comparación del Continente
                         Token tok3 = (Token)TokenControlador.Instancia.getArrayListTokens()[j];
-                        if (tok3.Lexema.ToLower().Equals("continente"))
+                        if (tok3.Lexema.Equals("Continente"))
                         {
-                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 5];
+                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 4];
                             continente2 = tok4.Lexema;
                         }
-                        if (tok3.Lexema.ToLower().Equals("pais"))
+                        if (tok3.Lexema.Equals("Pais"))
                         {
                             if (continente.Equals(continente2))
                             {
@@ -528,7 +528,7 @@ namespace LFP_Proyecto_No._1
                                 for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
                                 {
                                     Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
-                                    if (tok4.Lexema.ToLower().Equals("nombre"))
+                                    if (tok4.Lexema.Equals("Nombre"))
                                     {
                                         Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
                                         nombre = tok5.Lexema;
@@ -538,7 +538,7 @@ namespace LFP_Proyecto_No._1
                                 for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
                                 {
                                     Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
-                                    if (tok4.Lexema.ToLower().Equals("poblacion"))
+                                    if (tok4.Lexema.Equals("Poblacion"))
                                     {
                                         Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
                                         poblacion = Int32.Parse(tok5.Lexema);
@@ -548,7 +548,7 @@ namespace LFP_Proyecto_No._1
                                 for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
                                 {
                                     Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
-                                    if (tok4.Lexema.ToLower().Equals("saturacion"))
+                                    if (tok4.Lexema.Equals("Saturacion"))
                                     {
                                         Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
                                         saturacion = Int32.Parse(tok5.Lexema);
@@ -558,7 +558,7 @@ namespace LFP_Proyecto_No._1
                                 for (int k = j; k < TokenControlador.Instancia.getArrayListTokens().Count; k++)
                                 {
                                     Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[k];
-                                    if (tok4.Lexema.ToLower().Equals("bandera"))
+                                    if (tok4.Lexema.Equals("Bandera"))
                                     {
                                         Token tok5 = (Token)TokenControlador.Instancia.getArrayListTokens()[k + 2];
                                         bandera = tok5.Lexema;
