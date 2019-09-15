@@ -76,20 +76,6 @@ namespace LFP_Proyecto_No._1.Controlador
 
 
 
-            for (int i = 0; i < continentes.Count; i++)
-            {
-                Continente c = (Continente)continentes[i];
-                Console.WriteLine("el continente es " + c.Nombre);
-                for (int j = 0; j < c.Paises.Count; j++)
-                {
-
-                    Pais p = (Pais)c.Paises[j];
-                    Console.WriteLine("pais" + j + " " + p.Nombre);
-
-                    //Suma las saturaciones de los pai
-                }
-            }
-
 
 
             int satContinente = 0;
@@ -98,27 +84,32 @@ namespace LFP_Proyecto_No._1.Controlador
             string cuerpo = "";
             string aux = "";
             //Encabezado
-            grafoDot = "digraph G {" + "start[shape = Mdiamond label = \"Paises\"];";
+
+
+            
+            grafoDot = "digraph G {" + "start[shape = Mdiamond label = \"" + TokenControlador.Instancia.getNombreGrafica() + "\"];";
 
             for (int i = 0; i < continentes.Count; i++)
             {
                 Continente c = (Continente)continentes[i];
+                string nContinente = c.Nombre.Replace(" ", "");
                 cabeza = aux + "start->" + c.Nombre  + ";";
                 for (int j = 0; j < c.Paises.Count; j++)
                 {
                     Pais p = (Pais)c.Paises[j];
-                    //Suma las saturaciones de los pai
+                    string nPais = p.Nombre.Replace(" ", "_");
+                    //Suma las saturaciones de los paises
                     satPais = satPais + p.Satuacion;
                     //Arma el cuerpo
                     cuerpo = cuerpo +
-                        c.Nombre + "->" + p.Nombre + ";" +
-                        p.Nombre + "[shape = record label = \"{" + p.Nombre + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) +"];";
+                        nContinente + "->" + nPais + ";" +
+                        nPais + "[shape = record label = \"{" + nPais + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) +"];";
                 }
                 //Saturacion del continente
                 double auxd = satPais / c.Paises.Count;
                 satContinente = (int)Math.Round(auxd, 0, MidpointRounding.AwayFromZero);
 
-                aux = cabeza + cuerpo + c.Nombre+"[shape=record label=\"{"+c.Nombre+"| " + satContinente +"} \" style=filled fillcolor="+ getColor(satContinente) +"];";
+                aux = cabeza + cuerpo + nContinente+ "[shape=record label=\"{"+ nContinente + "| " + satContinente +"} \" style=filled fillcolor="+ getColor(satContinente) +"];";
                 grafoDot = grafoDot + aux;
                 cabeza = ""; cuerpo = ""; aux = ""; satPais = 0; 
             }

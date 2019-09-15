@@ -38,6 +38,7 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirTokensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirErroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirContinentesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -49,7 +50,6 @@
             this.richDescripcion = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureGrafico = new System.Windows.Forms.PictureBox();
-            this.imprimirContinentesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -138,6 +138,13 @@
             this.imprimirErroresToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.imprimirErroresToolStripMenuItem.Text = "Imprimir Errores";
             this.imprimirErroresToolStripMenuItem.Click += new System.EventHandler(this.ImprimirErroresToolStripMenuItem_Click);
+            // 
+            // imprimirContinentesToolStripMenuItem
+            // 
+            this.imprimirContinentesToolStripMenuItem.Name = "imprimirContinentesToolStripMenuItem";
+            this.imprimirContinentesToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.imprimirContinentesToolStripMenuItem.Text = "Imprimir Continentes";
+            this.imprimirContinentesToolStripMenuItem.Click += new System.EventHandler(this.ImprimirContinentesToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -241,13 +248,6 @@
             this.pictureGrafico.TabIndex = 0;
             this.pictureGrafico.TabStop = false;
             // 
-            // imprimirContinentesToolStripMenuItem
-            // 
-            this.imprimirContinentesToolStripMenuItem.Name = "imprimirContinentesToolStripMenuItem";
-            this.imprimirContinentesToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.imprimirContinentesToolStripMenuItem.Text = "Imprimir Continentes";
-            this.imprimirContinentesToolStripMenuItem.Click += new System.EventHandler(this.ImprimirContinentesToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -264,7 +264,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);

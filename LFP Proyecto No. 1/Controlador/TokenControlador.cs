@@ -16,6 +16,7 @@ namespace LFP_Proyecto_No._1.Controlador
         private ArrayList arrayListErrors = new ArrayList();
         private int idToken = 1;
         private int idTokenError = 1;
+        private string nombreGrafica = "";
         private TokenControlador()
         {
         }
@@ -30,9 +31,11 @@ namespace LFP_Proyecto_No._1.Controlador
 
         public void agregarToken(int fila, int columna, string lexema, string descripcion)
         {
+            Console.WriteLine( "lexema " + lexema + " descripcion " +  descripcion );
             Token token = new Token(idToken, lexema, descripcion, columna, fila);
             arrayListTokens.Add(token);
             idToken++;
+            
         }
 
         public void agregarError(int fila, int columna,string lexema, string descripcion)
@@ -61,6 +64,23 @@ namespace LFP_Proyecto_No._1.Controlador
             arrayListErrors.Clear();
         }
 
+        public string getNombreGrafica()
+        {
+            for (int i = 0; i < arrayListTokens.Count; i++)
+            {
+                Token tok = (Token)arrayListTokens[i];
+                if ((tok.Lexema.Equals("Nombre") && ((Token)arrayListTokens[i - 1]).Lexema.Equals("{") && ((Token)arrayListTokens[i - 2]).Lexema.Equals(":")
+                    && ((Token)arrayListTokens[i - 3]).Lexema.ToLower().Equals("grafica"))
+                    ||
+                    (tok.Lexema.Equals("Nombre") && ((Token)arrayListTokens[i - 1]).Lexema.Equals("}")))
+                {
+                    nombreGrafica = ((Token)arrayListTokens[i + 2]).Lexema;
+                }
+            }
+            nombreGrafica = nombreGrafica.Replace("\"", "");
+
+            return this.nombreGrafica;
+        }
 
         public void ImprimirTokens(string name)
         {

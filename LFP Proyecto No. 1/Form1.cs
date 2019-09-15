@@ -116,30 +116,46 @@ namespace LFP_Proyecto_No._1
         {
             foreach (Control c in tabControl1.SelectedTab.Controls)
             {
-                RichTextBox richTextBox = c as RichTextBox;
+                RichTextBox rich = c as RichTextBox;
                 //pintarLexemas(richTextBox, richTextBox.Text, 0);
-                TokenControlador.Instancia.clearListaTokens();
-                TokenControlador.Instancia.clearListaTokensError();
-                if (richTextBox.Text != "")
+                if (rich.Text != "")
                 {
-                    analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea                                                         //OBTENER CONTINENTE
+                    limpieza();
+                    analizador_Lexico(rich.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea
+                            //OBTENER CONTINENTE
                     obtenerContinentes();
-                    //CREA LA IMAGEN DE LOS CONTINENTES
+                    //GrafoControlador.Instancia.generarPaises();
                     GrafoControlador.Instancia.generarTexto();
+                    //string a = "";
                     generarImagen("diag", this.appPath);
-
                 }
                 else
                 {
-                    alertMessage("No se ha cargado un archivo de entrada");
+                    alertMessage("No se ha detectado texto para analizar");
                 }
             }
+
+
+
+
+        }
+
+        //Sirve para limpiar los componentes principales
+        public void limpieza()
+        {
+            //Limpia la imagen
+            this.pictureGrafico.InitialImage = null;
+            this.pictureGrafico.Image = null;
+            
+            //Limpia los tokens
+            TokenControlador.Instancia.clearListaTokens();
+            TokenControlador.Instancia.clearListaTokensError();
+            ContinenteControlador.Instancia.limpiarArrayListContinentes();
 
         }
 
 
-
-
+        #region Pintar_Lexema
         //Metodo que sirve para pintar las palabras reservadas 
         public void pintarLexemas(string lexema, string tipoLexema, int startIndex)
         {
@@ -164,7 +180,7 @@ namespace LFP_Proyecto_No._1
                         }
                         else if (tipoLexema.Equals("llave"))
                         {
-                            box.SelectionColor = Color.FromArgb(206,69,40);
+                            box.SelectionColor = Color.FromArgb(206, 69, 40);
                         }
                         else if (tipoLexema.Equals("punto"))
                         {
@@ -175,12 +191,13 @@ namespace LFP_Proyecto_No._1
                             box.SelectionColor = Color.FromArgb(131, 207, 26);
                         }
                     }
-                }                
+                }
                 box.Select(selectStart, 0);
                 box.SelectionColor = Color.Black;
 
             }
         }
+#endregion
 
 
         #region ANALIZADOR_LEXICO
@@ -325,15 +342,15 @@ namespace LFP_Proyecto_No._1
                             else
                             {
                                 if (auxiliar.Equals("Grafica") || auxiliar.Equals("Nombre") || auxiliar.Equals("Continente")
-                                    || auxiliar.Equals("Pais") || auxiliar.Equals("Poblacion") || auxiliar.Equals("Saturacion") 
+                                    || auxiliar.Equals("Pais") || auxiliar.Equals("Poblacion") || auxiliar.Equals("Saturacion")
                                     || auxiliar.Equals("Bandera"))
                                 {
-                                    TokenControlador.Instancia.agregarToken(fila, columna, auxiliar, "Palabra_Reservada_"+auxiliar);
+                                    TokenControlador.Instancia.agregarToken(fila, columna, auxiliar, "Palabra_Reservada_" + auxiliar);
                                     pintarLexemas(auxiliar, "reservada", 0);
                                 }
                                 else
                                 {
-                                    TokenControlador.Instancia.agregarError(fila, columna, auxiliar, "Patron_Desconocido_"+auxiliar);
+                                    TokenControlador.Instancia.agregarError(fila, columna, auxiliar, "Patron_Desconocido_" + auxiliar);
                                     alertMessage("Se detecto un error, Linea" + fila + " , columna " + columna);
                                 }
 
@@ -436,16 +453,19 @@ namespace LFP_Proyecto_No._1
 
 
 
-
         public void generarImagen(string nombre, string path)
         {
-            System.IO.File.WriteAllText(path + "\\" + nombre + ".dt" , GrafoControlador.Instancia.getGrafoDot());
-            ProcessStartInfo startInfo = new ProcessStartInfo("dot.exe");
-            startInfo.Arguments = "-Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
-            Process.Start(startInfo);
 
+            System.IO.File.WriteAllText(path + "\\" + nombre + ".dt", GrafoControlador.Instancia.getGrafoDot());
+            var command = "dot -Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
+            var procStarInfo = new ProcessStartInfo("cmd", "/C" + command);
+            var proc = new System.Diagnostics.Process();
+            proc.StartInfo = procStarInfo;
+            proc.Start();
+            proc.WaitForExit();
 
-            pictureGrafico.InitialImage = null;
+            
+
 
             string var = path + "\\" + "diag.png";
             if (File.Exists(var))
@@ -470,7 +490,7 @@ namespace LFP_Proyecto_No._1
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ImprimirContinentesToolStripMenuItem_Click(object sender, EventArgs e)
