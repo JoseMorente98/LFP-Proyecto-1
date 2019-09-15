@@ -120,16 +120,20 @@ namespace LFP_Proyecto_No._1
                 //pintarLexemas(richTextBox, richTextBox.Text, 0);
                 TokenControlador.Instancia.clearListaTokens();
                 TokenControlador.Instancia.clearListaTokensError();
-                analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea
-                //OBTENER CONTINENTE
-                obtenerContinentes();
+                if (richTextBox.Text != "")
+                {
+                    analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea                                                         //OBTENER CONTINENTE
+                    obtenerContinentes();
+                    //CREA LA IMAGEN DE LOS CONTINENTES
+                    GrafoControlador.Instancia.generarTexto();
+                    generarImagen("diag", this.appPath);
+
+                }
+                else
+                {
+                    alertMessage("No se ha cargado un archivo de entrada");
+                }
             }
-
-            //GrafoControlador.Instancia.generarPaises();
-            GrafoControlador.Instancia.generarTexto();
-            //string a = "";
-            generarImagen("diag", this.appPath);
-
 
         }
 
@@ -436,18 +440,9 @@ namespace LFP_Proyecto_No._1
         public void generarImagen(string nombre, string path)
         {
             System.IO.File.WriteAllText(path + "\\" + nombre + ".dt" , GrafoControlador.Instancia.getGrafoDot());
-            //System.IO.File.WriteAllText(@"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.txt" , grafoDot);
             ProcessStartInfo startInfo = new ProcessStartInfo("dot.exe");
-            //startInfo.Arguments = "dot -Tpng \"C:\\Users\\Juan José Ramos\\Desktop\\s\\" + nombre + ".txt\"  -o \"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.png" + "\"   ";
             startInfo.Arguments = "-Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
-            //startInfo.Arguments = "–Tjpg –O  \"" + path + "\\" + nombre + ".dt\"   ";
-
             Process.Start(startInfo);
-
-
-
-            Console.WriteLine(GrafoControlador.Instancia.getGrafoDot());
-
 
 
             pictureGrafico.InitialImage = null;
