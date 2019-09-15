@@ -39,7 +39,12 @@ namespace LFP_Proyecto_No._1.Controlador
             return arrayListContinentes;
         }
 
-        
+        public void limpiarArrayListContinentes()
+        {
+            arrayListContinentes.Clear();
+        }
+
+
 
     }
 }

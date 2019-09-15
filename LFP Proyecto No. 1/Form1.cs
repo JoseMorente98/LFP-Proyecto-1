@@ -122,13 +122,15 @@ namespace LFP_Proyecto_No._1
                 TokenControlador.Instancia.clearListaTokensError();
                 analizador_Lexico(richTextBox.Text); //Manda a llamar al metodo analizar cadena que se encarga de separar las instrucadenaFechasiones del textArea
                 //OBTENER CONTINENTE
+                ContinenteControlador.Instancia.limpiarArrayListContinentes();
                 obtenerContinentes();
+                //GrafoControlador.Instancia.generarPaises();
+                GrafoControlador.Instancia.generarTexto();
+                //string a = "";
+                generarImagen("diag", this.appPath);
             }
 
-            //GrafoControlador.Instancia.generarPaises();
-            GrafoControlador.Instancia.generarTexto();
-            //string a = "";
-            generarImagen("diag", this.appPath);
+            
 
 
         }
@@ -437,11 +439,12 @@ namespace LFP_Proyecto_No._1
         {
             System.IO.File.WriteAllText(path + "\\" + nombre + ".dt" , GrafoControlador.Instancia.getGrafoDot());
             //System.IO.File.WriteAllText(@"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.txt" , grafoDot);
+            Console.WriteLine(path + "\\" + nombre + ".dt", GrafoControlador.Instancia.getGrafoDot());
             ProcessStartInfo startInfo = new ProcessStartInfo("dot.exe");
             //startInfo.Arguments = "dot -Tpng \"C:\\Users\\Juan José Ramos\\Desktop\\s\\" + nombre + ".txt\"  -o \"C:\\Users\\Juan José Ramos\\Desktop\\s\\diag.png" + "\"   ";
             startInfo.Arguments = "-Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
             //startInfo.Arguments = "–Tjpg –O  \"" + path + "\\" + nombre + ".dt\"   ";
-
+            Console.WriteLine(startInfo);
             Process.Start(startInfo);
 
 
