@@ -86,14 +86,14 @@ namespace LFP_Proyecto_No._1.Controlador
             //Encabezado
 
 
-            
+
             grafoDot = "digraph G {" + "start[shape = Mdiamond label = \"" + TokenControlador.Instancia.getNombreGrafica() + "\"];";
 
             for (int i = 0; i < continentes.Count; i++)
             {
                 Continente c = (Continente)continentes[i];
                 string nContinente = c.Nombre.Replace(" ", "");
-                cabeza = aux + "start->" + c.Nombre  + ";";
+                cabeza = aux + "start->" + c.Nombre + ";";
                 for (int j = 0; j < c.Paises.Count; j++)
                 {
                     Pais p = (Pais)c.Paises[j];
@@ -103,15 +103,15 @@ namespace LFP_Proyecto_No._1.Controlador
                     //Arma el cuerpo
                     cuerpo = cuerpo +
                         nContinente + "->" + nPais + ";" +
-                        nPais + "[shape = record label = \"{" + nPais + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) +"];";
+                        nPais + "[shape = record label = \"{" + nPais + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) + "];";
                 }
                 //Saturacion del continente
                 double auxd = satPais / c.Paises.Count;
                 satContinente = (int)Math.Round(auxd, 0, MidpointRounding.AwayFromZero);
 
-                aux = cabeza + cuerpo + nContinente+ "[shape=record label=\"{"+ nContinente + "| " + satContinente +"} \" style=filled fillcolor="+ getColor(satContinente) +"];";
+                aux = cabeza + cuerpo + nContinente + "[shape=record label=\"{" + nContinente + "| " + satContinente + "} \" style=filled fillcolor=" + getColor(satContinente) + "];";
                 grafoDot = grafoDot + aux;
-                cabeza = ""; cuerpo = ""; aux = ""; satPais = 0; 
+                cabeza = ""; cuerpo = ""; aux = ""; satPais = 0;
             }
 
             grafoDot = grafoDot + " } ";
@@ -223,7 +223,7 @@ namespace LFP_Proyecto_No._1.Controlador
                         Pais p = (Pais)c.Paises[j];
                         for (int k = 0; k < listaPaises.Length; k++)
                         {
-                            
+
                             if (p.Nombre.Equals(listaPaises[k]))
                             {
                                 int satContinente = 0;
@@ -232,8 +232,9 @@ namespace LFP_Proyecto_No._1.Controlador
                     }
                 }
 
-                Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador +" veces");
-            } else
+                Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");
+            }
+            else
             {
                 //return ((Pais)paises[0])
                 Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");

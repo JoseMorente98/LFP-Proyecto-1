@@ -68,7 +68,7 @@
             this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1873, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -236,12 +236,12 @@
             this.panel1.Controls.Add(this.pictureGrafico);
             this.panel1.Location = new System.Drawing.Point(780, 56);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1067, 460);
+            this.panel1.Size = new System.Drawing.Size(859, 438);
             this.panel1.TabIndex = 8;
             // 
             // pictureGrafico
             // 
-            this.pictureGrafico.Location = new System.Drawing.Point(0, 3);
+            this.pictureGrafico.Location = new System.Drawing.Point(12, 27);
             this.pictureGrafico.Name = "pictureGrafico";
             this.pictureGrafico.Size = new System.Drawing.Size(1081, 499);
             this.pictureGrafico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -252,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1873, 816);
+            this.ClientSize = new System.Drawing.Size(1924, 816);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.richDescripcion);
             this.Controls.Add(this.picturePais);
