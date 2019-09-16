@@ -515,7 +515,7 @@ namespace LFP_Proyecto_No._1
                 if (tok.Lexema.Equals("Continente"))
                 {
                     ArrayList arrayListPais = new ArrayList();
-                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 4];
+                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 5];
                     //GUARDAR NOMBRE DE CONTINENTE
                     string continente = "";
                     string continente2 = "";
@@ -529,7 +529,7 @@ namespace LFP_Proyecto_No._1
                         Token tok3 = (Token)TokenControlador.Instancia.getArrayListTokens()[j];
                         if (tok3.Lexema.Equals("Continente"))
                         {
-                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 4];
+                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 5];
                             continente2 = tok4.Lexema;
                         }
                         if (tok3.Lexema.Equals("Pais"))
