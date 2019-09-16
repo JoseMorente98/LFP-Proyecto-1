@@ -593,5 +593,10 @@ namespace LFP_Proyecto_No._1
                 }
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
