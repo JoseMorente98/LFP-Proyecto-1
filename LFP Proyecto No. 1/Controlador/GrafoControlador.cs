@@ -96,14 +96,18 @@ namespace LFP_Proyecto_No._1.Controlador
                 cabeza = aux + "start->" + c.Nombre + ";";
                 for (int j = 0; j < c.Paises.Count; j++)
                 {
+
                     Pais p = (Pais)c.Paises[j];
-                    string nPais = p.Nombre.Replace(" ", "_");
+                    string nPais = p.Nombre.Replace(" ", "");
+
+
                     //Suma las saturaciones de los paises
                     satPais = satPais + p.Satuacion;
                     //Arma el cuerpo
                     cuerpo = cuerpo +
                         nContinente + "->" + nPais + ";" +
-                        nPais + "[shape = record label = \"{" + nPais + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) + "];";
+                        nPais + "[shape = record label = \"{" + p.Nombre + "|" + p.Satuacion + "}\"style = filled fillcolor = " + getColor(p.Satuacion) + "];";
+
                 }
                 //Saturacion del continente
                 double auxd = satPais / c.Paises.Count;

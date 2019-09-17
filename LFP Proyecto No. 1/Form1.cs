@@ -456,8 +456,8 @@ namespace LFP_Proyecto_No._1
         public void generarImagen(string nombre, string path)
         {
 
-            System.IO.File.WriteAllText(path + "\\" + nombre + ".dt", GrafoControlador.Instancia.getGrafoDot());
-            var command = "dot -Tpng \"" + path + "\\" + nombre + ".dt\"  -o \"" + path + "\\" + nombre + ".png\"   ";
+            System.IO.File.WriteAllText(path + "\\" + nombre + ".dot", GrafoControlador.Instancia.getGrafoDot());
+            var command = "dot -Tpng \"" + path + "\\" + nombre + ".dot\"  -o \"" + path + "\\" + nombre + ".png\"   ";
             var procStarInfo = new ProcessStartInfo("cmd", "/C" + command);
             var proc = new System.Diagnostics.Process();
             proc.StartInfo = procStarInfo;
@@ -515,7 +515,7 @@ namespace LFP_Proyecto_No._1
                 if (tok.Lexema.Equals("Continente"))
                 {
                     ArrayList arrayListPais = new ArrayList();
-                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 4];
+                    Token tok2 = (Token)TokenControlador.Instancia.getArrayListTokens()[i + 5];
                     //GUARDAR NOMBRE DE CONTINENTE
                     string continente = "";
                     string continente2 = "";
@@ -529,7 +529,7 @@ namespace LFP_Proyecto_No._1
                         Token tok3 = (Token)TokenControlador.Instancia.getArrayListTokens()[j];
                         if (tok3.Lexema.Equals("Continente"))
                         {
-                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 4];
+                            Token tok4 = (Token)TokenControlador.Instancia.getArrayListTokens()[j + 5];
                             continente2 = tok4.Lexema;
                         }
                         if (tok3.Lexema.Equals("Pais"))
@@ -592,6 +592,11 @@ namespace LFP_Proyecto_No._1
                     ContinenteControlador.Instancia.agregarContinente(continente.Replace("\"", ""), arrayListPais);
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
