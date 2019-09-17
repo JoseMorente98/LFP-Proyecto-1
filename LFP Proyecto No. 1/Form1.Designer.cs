@@ -68,7 +68,7 @@
             this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,14 +100,16 @@
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.guardarToolStripMenuItem.Text = "Guardar Archivo";
+            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.GuardarToolStripMenuItem_Click);
             // 
             // guardarComoToolStripMenuItem
             // 
             this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.guardarComoToolStripMenuItem.Text = "Guardar Como";
+            this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.GuardarComoToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -153,7 +155,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(578, 770);
+            this.tabControl1.Size = new System.Drawing.Size(578, 800);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -162,16 +164,16 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(570, 741);
+            this.tabPage1.Size = new System.Drawing.Size(570, 771);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 6);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(574, 746);
+            this.richTextBox1.Size = new System.Drawing.Size(570, 759);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -181,22 +183,22 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(570, 741);
+            this.tabPage2.Size = new System.Drawing.Size(570, 771);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox2.Location = new System.Drawing.Point(0, 6);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(638, 747);
+            this.richTextBox2.Size = new System.Drawing.Size(564, 759);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(612, 344);
+            this.button2.Location = new System.Drawing.Point(592, 464);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 3;
@@ -206,7 +208,7 @@
             // 
             // botonAnalizar
             // 
-            this.botonAnalizar.Location = new System.Drawing.Point(612, 295);
+            this.botonAnalizar.Location = new System.Drawing.Point(592, 426);
             this.botonAnalizar.Name = "botonAnalizar";
             this.botonAnalizar.Size = new System.Drawing.Size(100, 32);
             this.botonAnalizar.TabIndex = 4;
@@ -216,7 +218,7 @@
             // 
             // picturePais
             // 
-            this.picturePais.Location = new System.Drawing.Point(1220, 558);
+            this.picturePais.Location = new System.Drawing.Point(1168, 577);
             this.picturePais.Name = "picturePais";
             this.picturePais.Size = new System.Drawing.Size(288, 211);
             this.picturePais.TabIndex = 5;
@@ -224,7 +226,7 @@
             // 
             // richDescripcion
             // 
-            this.richDescripcion.Location = new System.Drawing.Point(910, 558);
+            this.richDescripcion.Location = new System.Drawing.Point(788, 577);
             this.richDescripcion.Name = "richDescripcion";
             this.richDescripcion.Size = new System.Drawing.Size(304, 211);
             this.richDescripcion.TabIndex = 7;
@@ -234,16 +236,16 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.pictureGrafico);
-            this.panel1.Location = new System.Drawing.Point(780, 56);
+            this.panel1.Location = new System.Drawing.Point(698, 56);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(859, 438);
+            this.panel1.Size = new System.Drawing.Size(859, 450);
             this.panel1.TabIndex = 8;
             // 
             // pictureGrafico
             // 
-            this.pictureGrafico.Location = new System.Drawing.Point(12, 27);
+            this.pictureGrafico.Location = new System.Drawing.Point(3, 3);
             this.pictureGrafico.Name = "pictureGrafico";
-            this.pictureGrafico.Size = new System.Drawing.Size(1081, 499);
+            this.pictureGrafico.Size = new System.Drawing.Size(2500, 450);
             this.pictureGrafico.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureGrafico.TabIndex = 0;
             this.pictureGrafico.TabStop = false;
@@ -252,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 816);
+            this.ClientSize = new System.Drawing.Size(1582, 853);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.richDescripcion);
             this.Controls.Add(this.picturePais);
@@ -264,7 +266,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

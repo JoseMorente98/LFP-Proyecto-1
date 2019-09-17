@@ -13,6 +13,8 @@ using LFP_Proyecto_No._1.Controlador;
 using System.Text.RegularExpressions;
 using LFP_Proyecto_No._1.Modelo;
 using System.Collections;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace LFP_Proyecto_No._1
 {
@@ -62,9 +64,7 @@ namespace LFP_Proyecto_No._1
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                tabControl1.SelectedTab.Text = Path.GetFileName(filePath);
-
-
+                tabControl1.SelectedTab.Text = filePath; 
             }
 
             if (File.Exists(filePath))
@@ -88,6 +88,7 @@ namespace LFP_Proyecto_No._1
                         alertMessage("Ha ocurrido un error.");
                     }
                 }
+                streamReader.Close();
             }
         }
 
@@ -470,7 +471,7 @@ namespace LFP_Proyecto_No._1
             string var = path + "\\" + "diag.png";
             if (File.Exists(var))
             {
-                Image img = Image.FromFile(var.Replace("\"", ""));
+                System.Drawing.Image img = System.Drawing.Image.FromFile(var.Replace("\"", ""));
                 this.pictureGrafico.Image = img;
             }
             else
@@ -490,7 +491,35 @@ namespace LFP_Proyecto_No._1
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Document doc = new Document();
+                PdfWriter.GetInstance(doc, new FileStream("grafica.pdf", FileMode.Create));
+                doc.Open();
 
+                Paragraph title = new Paragraph();
+                title.Font = FontFactory.GetFont(FontFactory.TIMES, 18f, BaseColor.BLUE);
+                title.Add("Saturación de Paises");
+                doc.Add(title);
+
+
+                if (File.Exists(this.appPath + "/diag.png"))
+                {
+                    iTextSharp.text.Image png = iTextSharp.text.Image.GetInstance(this.appPath + "/diag.png");
+                    png.ScaleToFit(500f, 400f);
+                    doc.Add(png);
+                }
+                else
+                {
+                    doc.Add(new Paragraph("Gráfica No Disponible"));
+                }
+
+                doc.Close();
+                System.Diagnostics.Process.Start("grafica.pdf");
+            } catch(Exception)
+            {
+                alertMessage("El PDF que intenta abrir esta siendo utilizado por otro programa.");
+            }
         }
 
         private void ImprimirContinentesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -597,6 +626,109 @@ namespace LFP_Proyecto_No._1
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void GuardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(tabControl1.SelectedTab.Text))
+            {
+                String dir = tabControl1.SelectedTab.Text;
+                StreamWriter streamWriter = new StreamWriter(@dir);
+                try
+                {
+                    foreach (Control c in tabControl1.SelectedTab.Controls)
+                    {
+                        RichTextBox richTextBox = c as RichTextBox;
+                        try
+                        {
+                            streamWriter.WriteLine(richTextBox.Text);
+                            streamWriter.WriteLine("\n");
+                        }
+                        catch (Exception)
+                        {
+                            alertMessage("Ha ocurrido un error D:");
+                        }
+                    }
+                } catch(Exception) { }
+                streamWriter.Close();
+            } else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Title = "Save Org Files";
+                saveFileDialog.DefaultExt = "org";
+                saveFileDialog.Filter = "Org files (*.org)|*.org";
+                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = tabControl1.SelectedTab.Text;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    String dir = saveFileDialog.FileName;
+                    StreamWriter streamWriter = new StreamWriter(@dir);
+                    tabControl1.SelectedTab.Text = dir;
+                    try
+                    {
+                        foreach (Control c in tabControl1.SelectedTab.Controls)
+                        {
+                            RichTextBox richTextBox = c as RichTextBox;
+                            try
+                            {
+                                streamWriter.WriteLine(richTextBox.Text);
+                                streamWriter.WriteLine("\n");
+                            }
+                            catch (Exception)
+                            {
+                                alertMessage("Ha ocurrido un error D:");
+
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        alertMessage("Ha ocurrido un error D:");
+                    }
+                    streamWriter.Close();
+                }
+            }
+        }
+
+        private void GuardarComoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Save Org Files";
+            saveFileDialog.DefaultExt = "org";
+            saveFileDialog.Filter = "Org files (*.org)|*.org";
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = tabControl1.SelectedTab.Text;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                String dir = saveFileDialog.FileName;
+                StreamWriter streamWriter = new StreamWriter(@dir);
+                try
+                {
+                    foreach (Control c in tabControl1.SelectedTab.Controls)
+                    {
+                        RichTextBox richTextBox = c as RichTextBox;
+                        try
+                        {
+                            streamWriter.WriteLine(richTextBox.Text);
+                            streamWriter.WriteLine("\n");
+                        }
+                        catch (Exception)
+                        {
+                            alertMessage("Ha ocurrido un error D:");
+
+                        }
+                    }
+                }
+                catch
+                {
+                    alertMessage("Ha ocurrido un error D:");
+                }
+                streamWriter.Close();
+            }
         }
     }
 }

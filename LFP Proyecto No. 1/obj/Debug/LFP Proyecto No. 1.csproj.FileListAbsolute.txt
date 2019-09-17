@@ -38,3 +38,6 @@ C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Seme
 C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\bin\Debug\LFP Proyecto No. 1.exe.config
 C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\bin\Debug\LFP Proyecto No. 1.exe
 C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\bin\Debug\LFP Proyecto No. 1.pdb
+C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\bin\Debug\itextsharp.dll
+C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\bin\Debug\itextsharp.xml
+C:\Users\Jose Morente\Documents\Universidad de San Carlos de Guatemala\USAC Semestre IV\USAC Lenguajes Formales y de Programación\LFP-Proyecto-1\LFP Proyecto No. 1\obj\Debug\LFP Proyecto No. 1.csproj.CopyComplete
