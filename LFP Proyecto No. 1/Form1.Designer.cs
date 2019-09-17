@@ -100,14 +100,14 @@
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.guardarToolStripMenuItem.Text = "Guardar Archivo";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.GuardarToolStripMenuItem_Click);
             // 
             // guardarComoToolStripMenuItem
             // 
             this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.guardarComoToolStripMenuItem.Text = "Guardar Como";
             this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.GuardarComoToolStripMenuItem_Click);
             // 
@@ -152,10 +152,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 31);
+            this.tabControl1.Location = new System.Drawing.Point(12, 81);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(578, 800);
+            this.tabControl1.Size = new System.Drawing.Size(578, 750);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -164,7 +164,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(570, 771);
+            this.tabPage1.Size = new System.Drawing.Size(570, 721);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -183,7 +183,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(570, 771);
+            this.tabPage2.Size = new System.Drawing.Size(570, 721);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -218,9 +218,10 @@
             // 
             // picturePais
             // 
-            this.picturePais.Location = new System.Drawing.Point(1168, 577);
+            this.picturePais.Location = new System.Drawing.Point(1088, 577);
             this.picturePais.Name = "picturePais";
-            this.picturePais.Size = new System.Drawing.Size(288, 211);
+            this.picturePais.Size = new System.Drawing.Size(368, 211);
+            this.picturePais.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picturePais.TabIndex = 5;
             this.picturePais.TabStop = false;
             // 

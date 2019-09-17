@@ -129,6 +129,7 @@ namespace LFP_Proyecto_No._1
                     GrafoControlador.Instancia.generarTexto();
                     //string a = "";
                     generarImagen("diag", this.appPath);
+                    getPaisMejorOpcion();
                 }
                 else
                 {
@@ -144,15 +145,38 @@ namespace LFP_Proyecto_No._1
         //Sirve para limpiar los componentes principales
         public void limpieza()
         {
-            //Limpia la imagen
-            this.pictureGrafico.InitialImage = null;
-            this.pictureGrafico.Image = null;
-            
             //Limpia los tokens
             TokenControlador.Instancia.clearListaTokens();
             TokenControlador.Instancia.clearListaTokensError();
             ContinenteControlador.Instancia.limpiarArrayListContinentes();
+            GrafoControlador.Instancia.limpiarAnalisisDePais();
 
+            this.richDescripcion.Text = "";
+            //Limpia la imagen
+            if (pictureGrafico.Image != null)
+            {
+                pictureGrafico.Image.Dispose();
+            }
+            if (picturePais.Image != null)
+            {
+                picturePais.Image.Dispose();
+            }
+            this.pictureGrafico.Image = null;
+            this.pictureGrafico.InitialImage = null;
+            this.picturePais.Image = null;
+            this.picturePais.InitialImage = null;
+
+            try
+            {
+                File.Delete(appPath + "\\diag.png"); ;
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
 
@@ -627,6 +651,38 @@ namespace LFP_Proyecto_No._1
         {
 
         }
+
+
+        public void getPaisMejorOpcion()
+        {
+            Pais p = GrafoControlador.Instancia.getPaisMejorOpcion();
+
+            if (p != null)
+            {
+                richDescripcion.Visible = true;
+                richDescripcion.Text = "Mejor opciond de Pais: "+ "\n"+ "\n"
+                    + "\n" + "Nombre: " + p.Nombre
+                    + "\n" + "Saturacion: " + p.Satuacion + "%"
+                    + "\n" + "Poblacion: " + p.Poblacion;
+
+                string var = p.Path.Replace("\"", "");
+                Console.WriteLine(var);
+                if (File.Exists(var))
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(var.Replace("\"", ""));
+                    this.picturePais.InitialImage = null;
+                    this.picturePais.Image = img;
+                    Console.WriteLine(img.ToString());
+                }
+                else
+                {
+                    richDescripcion.Text = richDescripcion.Text + " " + "\n\n--IMAGEN NO DISPONIBLE---";
+                }
+            }
+
+
+        }
+
 
         private void GuardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
