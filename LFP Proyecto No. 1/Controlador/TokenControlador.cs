@@ -31,7 +31,6 @@ namespace LFP_Proyecto_No._1.Controlador
 
         public void agregarToken(int fila, int columna, string lexema, string descripcion)
         {
-            Console.WriteLine( "lexema " + lexema + " descripcion " +  descripcion );
             Token token = new Token(idToken, lexema, descripcion, columna, fila);
             arrayListTokens.Add(token);
             idToken++;

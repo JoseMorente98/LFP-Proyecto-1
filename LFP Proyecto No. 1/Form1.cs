@@ -128,8 +128,11 @@ namespace LFP_Proyecto_No._1
                     //GrafoControlador.Instancia.generarPaises();
                     GrafoControlador.Instancia.generarTexto();
                     //string a = "";
-                    generarImagen("diag", this.appPath);
-                    getPaisMejorOpcion();
+                    if (TokenControlador.Instancia.getArrayListTokens().Count != 0)
+                    {
+                        generarImagen("diag", this.appPath);
+                        getPaisMejorOpcion();
+                    }
                 }
                 else
                 {
@@ -573,9 +576,9 @@ namespace LFP_Proyecto_No._1
                     string continente = "";
                     string continente2 = "";
                     continente = tok2.Lexema;
-                    Console.WriteLine("______________________________________");
-                    Console.WriteLine(continente);
-                    Console.WriteLine("______________________________________");
+                    //Console.WriteLine("______________________________________");
+                    //Console.WriteLine(continente);
+                    //Console.WriteLine("______________________________________");
                     for (int j = 0; j < TokenControlador.Instancia.getArrayListTokens().Count; j++)
                     {
                         //Comparación del Continente
@@ -635,10 +638,10 @@ namespace LFP_Proyecto_No._1
                                 }
                                 Pais p = new Pais(nombre.Replace("\"", ""), poblacion, saturacion, bandera.Replace("\"", ""));
                                 arrayListPais.Add(p);
-                                Console.WriteLine("PAIS: " + nombre);
-                                Console.WriteLine("SATURACION: " + saturacion);
-                                Console.WriteLine("POBLACION: " + poblacion);
-                                Console.WriteLine("BANDERA: " + bandera);
+                                //Console.WriteLine("PAIS: " + nombre);
+                                //Console.WriteLine("SATURACION: " + saturacion);
+                                //Console.WriteLine("POBLACION: " + poblacion);
+                                //Console.WriteLine("BANDERA: " + bandera);
                             }
                         }
                     }

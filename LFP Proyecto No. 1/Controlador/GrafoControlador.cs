@@ -13,8 +13,9 @@ namespace LFP_Proyecto_No._1.Controlador
     {
         private readonly static GrafoControlador instancia = new GrafoControlador();
         public string grafoDot = "";
-        String[] listaPaises = new String[20];
+        ArrayList listaPaises = new ArrayList();
         String[] listaContinentes = new String[20];
+        ArrayList arayAuxiliar = new ArrayList();
         ArrayList paises = new ArrayList();
         ArrayList continentes = ContinenteControlador.Instancia.getArrayListContinentes();
 
@@ -151,53 +152,117 @@ namespace LFP_Proyecto_No._1.Controlador
 
         public Pais getPaisMejorOpcion()
         {
+            this.arayAuxiliar.Clear();
             ////////////////////////////////////////////////////////
             ///          parte que verifica si la saturacion más pequeña viene mas de una vez
             ///                       
-
-            int saturacion = ((Pais)paises[0]).Satuacion;
-            int contador = 0;
-
-            for (int i = 1; i < paises.Count; i++)
+            if (this.paises.Count !=0)
             {
-                Pais p = (Pais)paises[i];
-                //verifica si la saturacion mas pequeña se repite
-                if (saturacion == p.Satuacion)
+                int saturacion = ((Pais)paises[0]).Satuacion;
+
+                int contador = 0;
+                listaPaises.Add(((Pais)paises[0]).Nombre);
+                for (int i = 1; i < paises.Count; i++)
                 {
-                    //Agrega el nombre del pais que se repitió
-                    listaPaises[contador] = p.Nombre;
-                    contador++;
-                }
-            }
-
-            if (contador > 1)
-            {
-
-                for (int i = 0; i < continentes.Count; i++)
-                {
-                    Continente c = (Continente)continentes[i];
-
-                    for (int j = 0; j < c.Paises.Count; j++)
+                    Pais p = (Pais)paises[i];
+                    //verifica si la saturacion mas pequeña se repite
+                    if (saturacion == p.Satuacion)
                     {
-                        Pais p = (Pais)c.Paises[j];
-                        for (int k = 0; k < listaPaises.Length; k++)
-                        {
-
-                            if (p.Nombre.Equals(listaPaises[k]))
-                            {
-
-                                Console.WriteLine(p.Nombre);
-                                int satContinente = 0;
-                            }
-                        }
+                        //Agrega el nombre del pais que se repitió
+                        listaPaises.Add(p.Nombre);
+                        contador++;
                     }
                 }
 
-                Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");
-            }
-            else
-            {
-                return ((Pais)paises[0]);
+            
+
+
+                if (contador >= 1)
+                {
+                    
+                    for (int i = 0; i < continentes.Count; i++)
+                    {
+                        Continente c = (Continente)continentes[i];
+
+                        for (int j = 0; j < c.Paises.Count; j++)
+                        {
+                            Pais p = (Pais)c.Paises[j];
+                            for (int k = 0; k < listaPaises.Count; k++)
+                            {
+                                if (listaPaises[k].ToString() != "")
+                                {
+                                    if (listaPaises[k].ToString().Equals(p.Nombre))
+                                    {
+                                        int satCont = 0;
+                                        for (int m = 0; m < c.Paises.Count; m++)
+                                        {
+                                            satCont = satCont + ((Pais)c.Paises[m]).Satuacion;
+                                        }
+                                        string var = c.Nombre + "," + (satCont/c.Paises.Count);
+                                        arayAuxiliar.Add(var);
+                                    }
+                                }
+                                
+                            }
+                        }
+
+                    }
+
+                    //METODO BURBUJA QUE ORDENA SEGUN CONTINENTE
+                    
+                    for (int i = 0; i <= arayAuxiliar.Count-1; i++)
+                    {
+                        string[] a = ((String)arayAuxiliar[i]).Split(',');
+                        for (int j = 0; j < arayAuxiliar.Count-i-1; j++)
+                        {
+                            string[] b = ((String)arayAuxiliar[j+1]).Split(',');
+
+                            int a1 = int.Parse(a[1]);
+                            int b1 = int.Parse(b[1]);
+                            if (a1 > b1)
+                            {
+                                object tem = arayAuxiliar[j];
+                                arayAuxiliar[j] = arayAuxiliar[j + 1];
+                                arayAuxiliar[j + 1] = tem;
+                            }
+                        }
+                    }
+
+
+                   
+
+                    for (int i = 0; i < continentes.Count; i++)
+                    {
+                        Continente c = (Continente)continentes[i];
+                        String[] detCont = ((String)arayAuxiliar[0]).Split(',');
+                        String var = detCont[0];
+                        if (c.Nombre.Equals(var))
+                        {
+                            Console.WriteLine("hola mundo");
+                            for (int j = 0; j < c.Paises.Count; j++)
+                            {
+                                int sat = ((Pais)c.Paises[j]).Satuacion;
+                                if (sat == saturacion)
+                                {
+                                    return (Pais)c.Paises[j];
+
+                                }
+                            }
+
+                            break;
+                        }
+                        
+
+                    }
+                   
+                    Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");
+                }
+                else
+                {
+                    return ((Pais)paises[0]);
+                    Console.WriteLine("la saturacion es " + saturacion + " y se repite " + contador + " veces");
+                }
+
             }
             return null;
         }
@@ -205,6 +270,7 @@ namespace LFP_Proyecto_No._1.Controlador
         {
             this.continentes.Clear();
             this.paises.Clear();
+            this.arayAuxiliar.Clear();
         }
     }
 }
