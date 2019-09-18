@@ -14,7 +14,6 @@ namespace LFP_Proyecto_No._1.Controlador
         private readonly static GrafoControlador instancia = new GrafoControlador();
         public string grafoDot = "";
         ArrayList listaPaises = new ArrayList();
-        String[] listaContinentes = new String[20];
         ArrayList arayAuxiliar = new ArrayList();
         ArrayList paises = new ArrayList();
         ArrayList continentes = ContinenteControlador.Instancia.getArrayListContinentes();
@@ -121,29 +120,32 @@ namespace LFP_Proyecto_No._1.Controlador
 
         public void ordenarPais()
         {
-            
+
             //Agrega los paises de los continentes a un array nuevo que va a ser ordenado
-            for (int i = 0; i < continentes.Count; i++)
+            if (continentes.Count != 0)
             {
-                Continente c = (Continente)continentes[i];
-                for (int j = 0; j < c.Paises.Count; j++)
+                for (int i = 0; i < continentes.Count; i++)
                 {
-                    Pais p = (Pais)c.Paises[j];
-                    paises.Add(p);
-                }
-            }
-
-
-            //Metodo burbuja que ordena los paises en forma ascendente segun saturacion
-            for (int i = 0; i <= paises.Count - 1; i++)
-            {
-                for (int j = 0; j < paises.Count - i - 1; j++)
-                {
-                    if (((Pais)paises[j]).Satuacion > ((Pais)paises[j + 1]).Satuacion)
+                    Continente c = (Continente)continentes[i];
+                    for (int j = 0; j < c.Paises.Count; j++)
                     {
-                        object tem = paises[j];
-                        paises[j] = paises[j + 1];
-                        paises[j + 1] = tem;
+                        Pais p = (Pais)c.Paises[j];
+                        paises.Add(p);
+                    }
+                }
+
+
+                //Metodo burbuja que ordena los paises en forma ascendente segun saturacion
+                for (int i = 0; i <= paises.Count - 1; i++)
+                {
+                    for (int j = 0; j < paises.Count - i - 1; j++)
+                    {
+                        if (((Pais)paises[j]).Satuacion > ((Pais)paises[j + 1]).Satuacion)
+                        {
+                            object tem = paises[j];
+                            paises[j] = paises[j + 1];
+                            paises[j + 1] = tem;
+                        }
                     }
                 }
             }
@@ -212,9 +214,9 @@ namespace LFP_Proyecto_No._1.Controlador
                     
                     for (int i = 0; i <= arayAuxiliar.Count-1; i++)
                     {
-                        string[] a = ((String)arayAuxiliar[i]).Split(',');
                         for (int j = 0; j < arayAuxiliar.Count-i-1; j++)
                         {
+                            string[] a = ((String)arayAuxiliar[j]).Split(',');
                             string[] b = ((String)arayAuxiliar[j+1]).Split(',');
 
                             int a1 = int.Parse(a[1]);
@@ -229,8 +231,6 @@ namespace LFP_Proyecto_No._1.Controlador
                     }
 
 
-                   
-
                     for (int i = 0; i < continentes.Count; i++)
                     {
                         Continente c = (Continente)continentes[i];
@@ -238,7 +238,6 @@ namespace LFP_Proyecto_No._1.Controlador
                         String var = detCont[0];
                         if (c.Nombre.Equals(var))
                         {
-                            Console.WriteLine("hola mundo");
                             for (int j = 0; j < c.Paises.Count; j++)
                             {
                                 int sat = ((Pais)c.Paises[j]).Satuacion;
@@ -268,9 +267,10 @@ namespace LFP_Proyecto_No._1.Controlador
         }
         public void limpiarAnalisisDePais()
         {
-            this.continentes.Clear();
-            this.paises.Clear();
-            this.arayAuxiliar.Clear();
+            continentes.Clear();
+            paises.Clear();
+            listaPaises.Clear();
+            arayAuxiliar.Clear();
         }
     }
 }
